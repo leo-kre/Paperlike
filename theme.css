@@ -1,0 +1,421 @@
+/* ==========================================================================
+   Obsidian Theme — Kanagawa Palette + VS Code-like Syntax Mapping
+   File: theme.css
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Base Color Tokens (Kanagawa variants as provided/updated)
+   -------------------------------------------------------------------------- */
+:root {
+  /* DARK BASE */
+  --dragonBlack2: #1D1C19;
+  --dragonBlack3: #181616;
+  --dragonBlack4: #282727;
+  --dragonWhite:  #c5c9c5;
+  --dragonGray2:  #9e9b93;
+
+  /* LIGHT BASE */
+  --paper0: #FFFFFF;
+  --paper1: #F7F8FA;
+  --paper2: #EEF1F5;
+  --paper3: #E9EDF2;
+  --ink0:  #2F3440;
+  --ink1:  #7A808C;
+
+  /* CONTRAST LINK COLORS */
+  --blueLight:       #4C84D9;  /* link (dark) */
+  --blueLightHover:  #6CA0E8;
+
+  /* UNFOUND LINK COLORS */
+  --redUnfoundDark:  #E3645A;  /* unfound link (dark) */
+
+  /* LIGHT MODE LINKS */
+  --blueFoundLight:        #0095FF;
+  --blueFoundLightHover:   #0077CC;
+  --blueUnfoundLight:      #60B8FF;
+}
+
+/* --------------------------------------------------------------------------
+   Theme: Dark
+   -------------------------------------------------------------------------- */
+.theme-dark {
+  --background-primary:       var(--dragonBlack3);
+  --background-primary-alt:   var(--dragonBlack3);
+  --background-secondary:     var(--dragonBlack2);
+  --background-secondary-alt: var(--dragonBlack4);
+
+  --text-normal: var(--dragonWhite);
+  --text-faint:  var(--dragonGray2);
+
+  /* Headings (saturated, slightly dialed back) — Kanagawa accents */
+  --text-title-h1: #E05C74; /* sakura-rose */
+  --text-title-h2: #E0884C; /* carp-orange */
+  --text-title-h3: #DCC44D; /* ronin-yellow */
+  --text-title-h4: #74C96A; /* spring-green */
+  --text-title-h5: #4DB8B0; /* wave-teal */
+  --text-title-h6: #5C96E3; /* koi-blue */
+
+  /* Links */
+  --text-link:    var(--blueLight);
+  --text-a:       var(--blueLight);
+  --text-a-hover: var(--blueLightHover);
+  --text-a-url:   var(--blueLight);
+
+  --text-unresolved: var(--redUnfoundDark);
+
+  /* Code container + accents */
+  --pre-code:    var(--background-secondary);
+  --inline-code: var(--text-title-h4); /* green accent */
+  --code-block:  var(--dragonWhite);   /* default code/body text */
+
+  /* Misc */
+  --text-selection: rgba(92, 150, 227, 0.25);
+  --text-tag:       #9A7CCC;
+  --bold-color:     var(--dragonWhite);
+}
+
+/* --------------------------------------------------------------------------
+   Theme: Light
+   -------------------------------------------------------------------------- */
+.theme-light {
+  --background-primary:       var(--paper1);
+  --background-primary-alt:   var(--paper2);
+  --background-secondary:     var(--paper0);
+  --background-secondary-alt: var(--paper3);
+
+  --text-normal: var(--ink0);
+  --text-faint:  var(--ink1);
+
+  /* Headings — Kanagawa accents */
+  --text-title-h1: #C54263; /* sakura-rose (light) */
+  --text-title-h2: #C76C28; /* carp-orange (light) */
+  --text-title-h3: #B08C1F; /* ronin-yellow (light) */
+  --text-title-h4: #3C9A3C; /* spring-green (light) */
+  --text-title-h5: #2C7C7C; /* wave-teal (light) */
+  --text-title-h6: #2C5FB8; /* koi-blue (light) */
+
+  /* Links */
+  --text-link:    var(--blueFoundLight);
+  --text-a:       var(--blueFoundLight);
+  --text-a-hover: var(--blueFoundLightHover);
+  --text-a-url:   var(--blueFoundLight);
+
+  --text-unresolved: var(--blueUnfoundLight);
+
+  /* Code container + accents */
+  --pre-code:    var(--background-primary-alt);
+  --inline-code: var(--text-title-h6); /* blue accent */
+  --code-block:  var(--ink0);          /* default code/body text */
+
+  /* Misc */
+  --text-selection: rgba(0, 149, 255, 0.20);
+  --text-tag:       #7A5FB8;
+  --bold-color:     var(--ink0);
+}
+
+/* --------------------------------------------------------------------------
+   Typography
+   -------------------------------------------------------------------------- */
+body {
+  --font-text-theme:      'JetBrains Mono', monospace !important;
+  --font-monospace-theme: 'JetBrains Mono', monospace !important;
+  font-size: 18px !important;
+}
+
+.cm-s-obsidian,
+.markdown-preview-view {
+  font-family: var(--font-text-theme) !important;
+  font-size: 18px !important;
+}
+
+code,
+pre,
+.cm-inline-code,
+.HyperMD-codeblock,
+.markdown-preview-section code {
+  font-family: var(--font-monospace-theme) !important;
+  font-size: 18px !important;
+}
+
+/* --------------------------------------------------------------------------
+   Links
+   -------------------------------------------------------------------------- */
+a,
+.cm-hmd-internal-link {
+  color: var(--text-a) !important;
+  text-decoration: none !important;
+}
+
+a:hover,
+.cm-hmd-internal-link:hover,
+.cm-url {
+  color: var(--text-a-hover) !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px !important;
+}
+
+/* Unresolved Links */
+.cm-hmd-internal-link.is-unresolved,
+.markdown-rendered .is-unresolved {
+  color: var(--text-unresolved) !important;
+  font-style: italic !important;
+  text-decoration: underline dashed !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 2px !important;
+}
+
+/* Tags */
+a.tag,
+a.tag:hover {
+  color: var(--text-tag) !important;
+  background-color: var(--background-secondary-alt);
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+a.tag:hover {
+  text-decoration: underline !important;
+}
+
+/* --------------------------------------------------------------------------
+   Headings
+   -------------------------------------------------------------------------- */
+.cm-header-1,
+.markdown-preview-section h1 { color: var(--text-title-h1) !important; }
+
+.cm-header-2,
+.markdown-preview-section h2 { color: var(--text-title-h2) !important; }
+
+.cm-header-3,
+.markdown-preview-section h3 { color: var(--text-title-h3) !important; }
+
+.cm-header-4,
+.markdown-preview-section h4 { color: var(--text-title-h4) !important; }
+
+.cm-header-5,
+.markdown-preview-section h5 { color: var(--text-title-h5) !important; }
+
+.cm-header-6,
+.markdown-preview-section h6 { color: var(--text-title-h6) !important; }
+
+/* Heading links inherit heading colors */
+.cm-header-1.cm-link, h1 a { color: var(--text-title-h1) !important; }
+.cm-header-2.cm-link, h2 a { color: var(--text-title-h2) !important; }
+.cm-header-3.cm-link, h3 a { color: var(--text-title-h3) !important; }
+.cm-header-4.cm-link, h4 a { color: var(--text-title-h4) !important; }
+.cm-header-5.cm-link, h5 a { color: var(--text-title-h5) !important; }
+.cm-header-6.cm-link, h6 a { color: var(--text-title-h6) !important; }
+
+/* Heading sizes/weights */
+.HyperMD-header-1, .markdown-preview-section h1 { font-weight: 500 !important; font-size: 2.2em !important; }
+.HyperMD-header-2, .markdown-preview-section h2 { font-weight: 500 !important; font-size: 2.0em !important; }
+.HyperMD-header-3, .markdown-preview-section h3 { font-weight: 500 !important; font-size: 1.8em !important; }
+.HyperMD-header-4, .markdown-preview-section h4 { font-weight: 500 !important; font-size: 1.6em !important; }
+.HyperMD-header-5, .markdown-preview-section h5 { font-weight: 500 !important; font-size: 1.4em !important; }
+.HyperMD-header-6, .markdown-preview-section h6 { font-weight: 500 !important; font-size: 1.2em !important; }
+
+/* --------------------------------------------------------------------------
+   Code Containers
+   -------------------------------------------------------------------------- */
+.HyperMD-codeblock-bg { background-color: var(--pre-code) !important; }
+.HyperMD-codeblock    { line-height: 1.4em !important; color: var(--code-block) !important; }
+
+.markdown-preview-section pre code,
+.markdown-preview-section code {
+  background-color: var(--pre-code) !important;
+  font-size: 0.9em !important;
+  color: var(--code-block) !important;
+}
+
+.cm-inline-code {
+  color: var(--inline-code) !important;
+  background-color: var(--pre-code) !important;
+  padding: 1px !important;
+}
+
+/* --------------------------------------------------------------------------
+   VS Code-like Syntax Colors — Editor (CodeMirror) + Preview (Prism)
+   Mapping uses Kanagawa-derived accents.
+   -------------------------------------------------------------------------- */
+
+/* Comments / meta */
+.cm-s-obsidian .cm-comment,
+.markdown-preview-view code[class*="language-"] .token.comment,
+.markdown-preview-view code[class*="language-"] .token.prolog,
+.markdown-preview-view code[class*="language-"] .token.doctype,
+.markdown-preview-view code[class*="language-"] .token.cdata {
+  color: var(--text-faint) !important;
+  font-style: italic;
+}
+
+/* Keywords / control */
+.cm-s-obsidian .cm-keyword,
+.markdown-preview-view code[class*="language-"] .token.keyword {
+  color: var(--text-title-h6) !important; /* koi-blue */
+}
+
+/* Strings / char / regex */
+.cm-s-obsidian .cm-string,
+.markdown-preview-view code[class*="language-"] .token.string,
+.markdown-preview-view code[class*="language-"] .token.regex {
+  color: var(--text-title-h4) !important; /* spring-green */
+}
+
+/* Numbers / booleans / constants */
+.cm-s-obsidian .cm-number,
+.cm-s-obsidian .cm-atom,
+.markdown-preview-view code[class*="language-"] .token.number,
+.markdown-preview-view code[class*="language-"] .token.boolean,
+.markdown-preview-view code[class*="language-"] .token.constant {
+  color: var(--text-title-h3) !important; /* ronin-yellow */
+}
+
+/* Functions / methods */
+.cm-s-obsidian .cm-def,
+.markdown-preview-view code[class*="language-"] .token.function {
+  color: var(--text-title-h2) !important; /* carp-orange */
+}
+
+/* Types / classes / builtins / symbols */
+.cm-s-obsidian .cm-type,
+.cm-s-obsidian .cm-builtin,
+.markdown-preview-view code[class*="language-"] .token.class-name,
+.markdown-preview-view code[class*="language-"] .token.builtin,
+.markdown-preview-view code[class*="language-"] .token.symbol,
+.markdown-preview-view code[class*="language-"] .token.important {
+  color: var(--text-title-h5) !important; /* wave-teal */
+}
+
+/* Variables / properties / parameters */
+.cm-s-obsidian .cm-variable,
+.cm-s-obsidian .cm-property,
+.cm-s-obsidian .cm-variable-2,
+.cm-s-obsidian .cm-property.cm-meta,
+.markdown-preview-view code[class*="language-"] .token.variable,
+.markdown-preview-view code[class*="language-"] .token.property,
+.markdown-preview-view code[class*="language-"] .token.parameter {
+  color: var(--code-block) !important;
+}
+
+/* Operators / punctuation / tags */
+.cm-s-obsidian .cm-operator,
+.cm-s-obsidian .cm-tag,
+.markdown-preview-view code[class*="language-"] .token.operator,
+.markdown-preview-view code[class*="language-"] .token.punctuation,
+.markdown-preview-view code[class*="language-"] .token.tag {
+  color: var(--text-normal) !important;
+}
+
+/* HTML/XML attributes */
+.markdown-preview-view code[class*="language-"] .token.attr-name,
+.markdown-preview-view code[class*="language-"] .token.attribute {
+  color: var(--text-title-h1) !important; /* sakura-rose */
+}
+
+/* URLs */
+.markdown-preview-view code[class*="language-"] .token.url,
+.markdown-preview-view code[class*="language-"] .token.link,
+.markdown-preview-view code[class*="language-"] .token.symbol.token-url {
+  color: var(--text-a) !important;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Emphasis inside code */
+.markdown-preview-view code[class*="language-"] .token.bold { font-weight: 600; }
+.markdown-preview-view code[class*="language-"] .token.italic { font-style: italic; }
+
+/* Selection inside code blocks (editor & preview) */
+.cm-s-obsidian .CodeMirror-selected,
+.markdown-preview-view pre code ::selection {
+  background-color: var(--text-selection) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Markdown Token Coloring (VS Code-like)
+   -------------------------------------------------------------------------- */
+
+/* Emphasis / strong */
+.cm-s-obsidian .cm-strong,
+.markdown-preview-view strong {
+  color: var(--bold-color) !important;
+  font-weight: 600;
+}
+.cm-s-obsidian .cm-em,
+.markdown-preview-view em {
+  color: var(--text-normal) !important;
+  font-style: italic;
+}
+
+/* Headings punctuation (the # marks) */
+.cm-s-obsidian .cm-formatting-header {
+  color: var(--text-faint) !important;
+}
+
+/* Lists: bullets / numbers */
+.cm-s-obsidian .cm-formatting-list,
+.markdown-preview-view .markdown-preview-sizer ul > li::marker,
+.markdown-preview-view .markdown-preview-sizer ol > li::marker {
+  color: var(--text-title-h2) !important; /* subtle accent */
+}
+
+/* Blockquote marker */
+.cm-s-obsidian .cm-formatting-quote,
+.markdown-preview-view blockquote {
+  color: var(--text-faint) !important;
+  border-left: 3px solid var(--text-faint);
+  padding-left: 0.9em;
+}
+
+/* Code fence backticks */
+.cm-s-obsidian .cm-formatting-code,
+.cm-s-obsidian .cm-formatting-code-block {
+  color: var(--text-title-h3) !important; /* yellow accent for backticks */
+}
+
+/* Links in markdown text */
+.cm-s-obsidian .cm-link,
+.cm-s-obsidian .cm-url,
+.cm-s-obsidian .cm-formatting-link,
+.markdown-preview-view a {
+  color: var(--text-a) !important;
+}
+
+/* Horizontal rule */
+.markdown-preview-view hr {
+  border: none;
+  border-top: 1px solid var(--background-secondary-alt);
+}
+
+/* --------------------------------------------------------------------------
+   Tables
+   -------------------------------------------------------------------------- */
+table {
+  border: 1px solid var(--background-secondary) !important;
+  border-collapse: collapse;
+}
+
+th {
+  font-weight: 600 !important;
+  border: 0px !important;
+  text-align: left;
+  background-color: var(--table-header);
+  color: var(--text-normal);
+}
+
+td {
+  border-left: 0px !important;
+  border-right: 0px !important;
+  border-bottom: 1px solid var(--background-secondary) !important;
+}
+
+tr:nth-child(even) { background-color: var(--table-row-even); }
+tr:nth-child(odd)  { background-color: var(--table-row-odd); }
+tr:hover           { background-color: var(--table-hover); }
+
+/* --------------------------------------------------------------------------
+   Selection
+   -------------------------------------------------------------------------- */
+::selection {
+  background-color: var(--text-selection) !important;
+}
